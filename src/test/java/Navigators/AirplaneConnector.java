@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Number2Connector extends BaseConnector {
+public class AirplaneConnector extends BaseConnector {
 	String query = "SELECT * FROM film WHERE title LIKE '%airplane%';";
 	ResultSet resultSet;
 	List<Film> films;
@@ -13,16 +13,16 @@ public class Number2Connector extends BaseConnector {
 		films = new ArrayList<>();
 	}
 
-	public Number2Connector(String connectionString) {
+	public AirplaneConnector(String connectionString) {
 		super(connectionString);
 	}
 
-	public Number2Connector connectDb() {
+	public AirplaneConnector connectDb() {
 		super.connectDb();
 		return this;
 	}
 
-	public Number2Connector query() {
+	public AirplaneConnector query() {
 		resultSet = super.query(query);
 		return this;
 	}

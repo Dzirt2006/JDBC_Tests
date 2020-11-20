@@ -32,34 +32,15 @@ public class BaseConnector {
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 		}
-//		finally {
-//			if (stmt != null) {
-//				try {
-//					stmt.close();
-//				} catch (SQLException e) {
-//					System.err.println("SQLException: " + e.getMessage());
-//				}
-//			}
-//			if (con != null) {
-//				try {
-//					con.close();
-//				} catch (SQLException e) {
-//					System.err.println("SQLException: " + e.getMessage());
-//				}
-//			}
-//		}
+
 		return rs;
 	}
 
 	public void executeUpdate(String query) {
 		Statement stmt = null;
 		try {
-
 			stmt = con.createStatement();
-
 			int code = stmt.executeUpdate(query);
-			System.out.println("trying " + code + " <-code");
-			System.out.println();
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 		}
@@ -70,7 +51,6 @@ public class BaseConnector {
 		try {
 			stmt = con.createStatement();
 			boolean code = stmt.execute(query);
-			System.out.println("trying " + code);
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 			ex.printStackTrace();
