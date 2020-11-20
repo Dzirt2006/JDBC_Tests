@@ -2,13 +2,14 @@ package Navigators;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class BaseConnector {
 	String connectionString;
-	Connection con;
+	public Connection con;
 
 	public BaseConnector(String connectionString) {
 		this.connectionString = connectionString;
@@ -21,6 +22,25 @@ public class BaseConnector {
 			System.out.println(ex.getMessage());
 		}
 		return this;
+	}
+
+	public PreparedStatement prepareState(String state) {
+		PreparedStatement stmt = null;
+		try {
+			stmt = con.prepareStatement(state);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return stmt;
+	}
+
+	public void execPreparedState(PreparedStatement state) {
+		try {
+			state.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public ResultSet query(String query) {
