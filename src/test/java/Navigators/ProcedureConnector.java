@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Number7Connector extends BaseConnector {
+public class ProcedureConnector extends BaseConnector {
 	String query = "CALL getInv(2,'Alien Center');";
 	String function="CREATE PROCEDURE  getInv(IN storeId INT , IN filmTitle VARCHAR(45)) BEGIN SELECT I.inventory_id FROM store as S join inventory AS I on S.store_id=I.store_id and S.store_id=storeId join film as F on F.film_id=I.film_id where F.title=filmTitle; END";
 //	String function = "CREATE PROCEDURE  getInv(IN storeId INT , IN filmTitle VARCHAR(45))" + " BEGIN "
@@ -19,21 +19,21 @@ public class Number7Connector extends BaseConnector {
 		ids = new ArrayList<>();
 	}
 
-	public Number7Connector(String connectionString) {
+	public ProcedureConnector(String connectionString) {
 		super(connectionString);
 	}
 
-	public Number7Connector connectDb() {
+	public ProcedureConnector connectDb() {
 		super.connectDb();
 		return this;
 	}
 
-	public Number7Connector queryCreateFunc() {
+	public ProcedureConnector queryCreateFunc() {
 		super.execute(function);
 		return this;
 	}
 
-	public Number7Connector queryCallFunc() {
+	public ProcedureConnector queryCallFunc() {
 		resultSet = super.query(query);
 		return this;
 	}
