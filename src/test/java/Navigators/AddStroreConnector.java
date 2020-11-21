@@ -30,12 +30,15 @@ public class AddStroreConnector extends BaseConnector {
 	}
 
 	public AddStroreConnector queryInsert() {
-		// I thought about executeBatch() ,but we have a different tables and also set a variables
+		super.startTransaction();
+		// I thought about executeBatch() ,but we have a different tables and also set a
+		// variables
 		super.executeUpdate(queryInsert0);
 		super.executeUpdate(queryInsert1);
 		super.executeUpdate(queryInsert2);
 		super.executeUpdate(queryInsert3);
 		super.executeUpdate(queryInsert4);
+		super.commitTransaction();
 		return this;
 	}
 

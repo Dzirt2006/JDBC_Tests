@@ -56,14 +56,16 @@ public class BaseConnector {
 		return rs;
 	}
 
-	public void executeUpdate(String query) {
+	public int executeUpdate(String query) {
 		Statement stmt = null;
+		int effected = 0;
 		try {
 			stmt = con.createStatement();
-			int code = stmt.executeUpdate(query);
+			effected = stmt.executeUpdate(query);
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 		}
+		return effected;
 	}
 
 	public void execute(String query) {
@@ -75,6 +77,28 @@ public class BaseConnector {
 			System.out.println(ex.getMessage());
 			ex.printStackTrace();
 		}
+	}
+
+	public void startTransaction() {
+		try {
+			con.setAutoCommit(false);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void commitTransaction() {
+		try {
+			con.commit();
+			con.setAutoCommit(true);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void rollbackTransaction() {
+
 	}
 
 }
